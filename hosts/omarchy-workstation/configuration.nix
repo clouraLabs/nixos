@@ -22,8 +22,36 @@
     shell = pkgs.zsh;
   };
 
-  # Enable flakes
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  # Enable flakes and optimize download performance
+  nix.settings = {
+    experimental-features = [ "nix-command" "flakes" ];
+    
+    # Maximum download buffer and connection settings
+    download-buffer-size = 268435456;  # 256MB download buffer (default: 64MB)
+    http-connections = 128;            # Maximum parallel HTTP connections (default: 25)
+    download-attempts = 5;             # Number of download retry attempts (default: 5)
+    connect-timeout = 300;             # Connection timeout in seconds (default: 0)
+    stalled-download-timeout = 300;    # Timeout for stalled downloads in seconds (default: 300)
+    
+    # Enable parallel building for faster builds
+    max-jobs = "auto";                 # Maximum build jobs (auto = number of CPU cores)
+    cores = 0;                         # Build cores per job (0 = all available)
+  };
+  # Enable flakes and optimize download performance
+  nix.settings = {
+    experimental-features = [ "nix-command" "flakes" ];
+    
+    # Maximum download buffer and connection settings
+    download-buffer-size = 268435456;  # 256MB download buffer (default: 64MB)
+    http-connections = 128;            # Maximum parallel HTTP connections (default: 25)
+    download-attempts = 5;             # Number of download retry attempts (default: 5)
+    connect-timeout = 300;             # Connection timeout in seconds (default: 0)
+    stalled-download-timeout = 300;    # Timeout for stalled downloads in seconds (default: 300)
+    
+    # Enable parallel building for faster builds
+    max-jobs = "auto";                 # Maximum build jobs (auto = number of CPU cores)
+    cores = 0;                         # Build cores per job (0 = all available)
+  };
 
   # Allow unfree packages (for RStudio, VSCode, etc.)
   nixpkgs.config.allowUnfree = true;
