@@ -90,7 +90,8 @@ fi
 print_header "User Configuration"
 
 USERNAME=$(prompt_input "Enter your username" "$USER")
-HOSTNAME=$(prompt_input "Enter hostname for this machine" "$(hostname)")
+HOSTNAME="clouraLabs"  # Fixed hostname for the clouraLabs system
+print_info "Using hostname: $HOSTNAME"
 TIMEZONE=$(prompt_input "Enter timezone" "America/New_York")
 LOCALE=$(prompt_input "Enter locale" "en_US.UTF-8")
 
